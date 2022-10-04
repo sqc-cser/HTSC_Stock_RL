@@ -18,14 +18,12 @@
 - Data文件，读取上证指数历史数据(data.csv已经存放了预处理后的数据，直接读取即可)，
 如果需要改变数据源，需要手动调tushare的token并获取所需数据并进行预处理
 - 预处理采用当日开高收低价与前252个交易日收盘价的Z-score标准化
-- Train阶段，初始化两个神经网络，eval_net估计 t 时的 Q value T1(t时若干天后收益情况),
-target_net 估计 t+1 时的 Q value T2(t+1时若干天后的收益情况), 
-target_net的参数在训练每隔一定次数后复制为eval_net的参数
-- T1 - loss = r1 + T2, loss 越小，说明网络对未来的估计越准确，优化loss，使之变小
+- Train阶段，初始化两个神经网络，eval_net估计 t 时的 Q value T1(t时若干天后收益情况),target_net 估计 t+1 时的 Q value T2(t+1时若干天后的收益情况), target_net的参数在训练每隔一定次数后复制为eval_net的参数
+- loss 为 T2 + r1(真实奖励) 与 T1的差值, loss 越小，说明网络对未来的估计越准确，优化loss，使之变小
 - Test阶段，由于随机数种子对结果的影响大，Start 文件中用了多组(10组)随机数种子来合成信号交易
 
 具体见原文详细流程
-目前复现效果不佳，训练集上如图
+目前复现效果不佳，表现不达研报预期，部分随机数种子产生的训练集上表现如图
 ![DQN_train_10_ep](results/DQN_train_10_ep.png)
 测试集上如图
 ![DQN_model_seed_20](results/DQN_model_seed_20.png)
