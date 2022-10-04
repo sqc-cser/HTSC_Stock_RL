@@ -1,0 +1,18 @@
+# Requirements
+
+gputil==1.4.0
+gym==0.24.1
+
+# plot
+matplotlib==3.5.2
+# data handling
+numpy==1.23.1
+pandas==1.4.3
+
+# Model Building Requirements
+scikit-learn==1.1.1
+
+# packaging
+tushare==1.2.85
+torch==1.10.2
+visdom==0.1.8.9
